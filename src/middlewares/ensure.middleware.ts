@@ -24,10 +24,15 @@ class EnsureMiddleware {
         }
     }
 
-    public cardIdExists = async (req: Request, res: Response, next: NextFunction) => {
+    public carIdExists = async (req: Request, res: Response, next: NextFunction) => {
 
         const { id } = req.params;
         const foundCar = await prisma.car.findFirst({ where: { id } })
+
+        if (!id) {
+            throw new AppError("Car ID is required", 400);
+        }
+
 
         if (!foundCar) {
             throw new AppError("Car not found.", 404);

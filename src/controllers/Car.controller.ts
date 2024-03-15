@@ -15,8 +15,7 @@ export class CarController {
     }
 
     public findId = async (req: Request, res: Response): Promise<Response> => {
-        const { foundCar } = res.locals;
-        return res.status(200).json(await this.service.findId(foundCar.id));
+        return res.status(200).json(await this.service.findId(req.params.id));
     }
 
     public update = async (req: Request, res: Response): Promise<Response> => {

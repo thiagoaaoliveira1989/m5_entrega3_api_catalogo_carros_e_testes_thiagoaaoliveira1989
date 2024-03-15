@@ -9,7 +9,7 @@ const controller = new CarController();
 carRouter.post("", ensure.validBody(createCarSchema), controller.create);
 carRouter.get("", controller.findAll);
 
-carRouter.use("/:id", ensure.cardIdExists)
+carRouter.use("/:id", ensure.carIdExists)
 
 carRouter.get("/:id", controller.findId);
 carRouter.patch("/:id", ensure.validBody(updateCarSchema), controller.update);
